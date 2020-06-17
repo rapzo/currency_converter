@@ -1,0 +1,24 @@
+@import "./theme/colors";
+
+.App {
+  background: $white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  max-width: 540px;
+
+  & > h1 {
+    padding-top: 60px;
+    color: $dark_blue;
+    font-size: 2.75rem;
+    margin: 0;
+  }
+
+  & > h2 {
+    padding-top: 50px;
+    color: $light_blue;
+    font-weight: normal;
+    margin: 0;
+  }
+}

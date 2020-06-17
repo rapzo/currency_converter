@@ -1,0 +1,12 @@
+@import "../theme/colors";
+
+.CurrencyDropdown {
+  position: absolute;
+  top: 1.25rem;
+  right: 1rem;
+  background-color: $white;
+  padding: 0.5rem 0.625rem;
+  border-radius: 1.75rem;
+  min-width: 80px;
+  color: $deep_blue;
+}

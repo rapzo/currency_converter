@@ -1,0 +1,12 @@
+@import "../theme/colors";
+
+.TextInput {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background-color: $light_grey;
+  font-size: 2rem;
+  padding: 1.25rem 1.5rem;
+  flex-grow: 1;
+  color: $grey;
+}

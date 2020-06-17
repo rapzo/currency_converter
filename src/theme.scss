@@ -1,0 +1,16 @@
+@import "./theme/typography";
+@import "./theme/colors";
+
+html {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+body {
+  font-family: $font-family;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
