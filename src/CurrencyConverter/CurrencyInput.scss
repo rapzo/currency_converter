@@ -1,4 +1,4 @@
-@import "../../theme/colors";
+@import "../theme/colors";
 
 .CurrencyInput {
   border: none;
@@ -8,7 +8,7 @@
   font-size: 2rem;
   padding: 1.25rem 1.5rem;
   flex-grow: 1;
-  color: $grey;
+  color: $dark_blue;
 
   &::placeholder {
     color: $grey;

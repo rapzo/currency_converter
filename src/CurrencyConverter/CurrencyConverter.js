@@ -1,12 +1,11 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 
 import './CurrencyConverter.scss';
 
-import { converter } from './CurrencyConverterService';
+import { converter } from '../services/CurrencyConverterService';
 import { CurrencyInput } from './CurrencyInput';
 import { CurrencyDropdown } from './CurrencyDropdown';
-
+import { CurrencyConverterResult } from './CurrencyConverterResult';
 
 export function CurrencyConverter() {
 
@@ -14,19 +13,16 @@ export function CurrencyConverter() {
 
   return (
     <div className="CurrencyConverter">
-      <div className="InputControl">
+      <div className="CurrencyConverter__input">
         <CurrencyInput />
-        <CurrencyDropdown />
+        <div className="CurrencyConverter__dropdown">
+          <CurrencyDropdown />
+        </div>
+      </div>
+
+      <div className="CurrencyConverter__result">
+        <CurrencyConverterResult />
       </div>
     </div>
   );
 }
-
-CurrencyConverter.propTypes = {
-
-};
-
-
-CurrencyConverter.defaultProps = {
-
-};

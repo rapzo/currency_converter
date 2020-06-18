@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { BehaviorSubject } from 'rxjs';
-import { debounceTime, scan } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 import './CurrencyInput.scss';
 
@@ -11,13 +11,17 @@ const {format} = new Intl.NumberFormat(
 export function CurrencyInput({setValue}) {
   const initialValue = 0.00;
   const inputRef = React.useRef();
-  const input$ = new BehaviorSubject(initialValue).pipe(
+  const input$ = new Subject().pipe(
     debounceTime(1000),
   );
 
-  input$.subscribe(value => {
-    console.log(value)
-  });
+  React.useEffect(() => {
+    const subscription = input$.subscribe(value => {
+      console.log(value)
+    });
+
+    return () => subscription.unsubscribe();
+  }, [input$]);
 
   const handleChangeValue = ({target}) => {
     input$.next(target.value);

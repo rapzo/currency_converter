@@ -2,10 +2,17 @@
   width: 100%;
   padding-top: 4rem;
   display: flex;
-}
+  flex-direction: column;
 
-.InputControl {
-  position: relative;
-  display: flex;
-  flex-grow: 1;
+  &__input {
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: 1.125rem;
+    right: 1rem;
+  }
 }

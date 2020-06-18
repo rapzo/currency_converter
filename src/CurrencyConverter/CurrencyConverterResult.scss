@@ -1,0 +1,10 @@
+@import "../theme/colors";
+
+.CurrencyConverterResult {
+
+  &__default {
+    padding-top: 30px;
+    color: $light_blue;
+    font-weight: normal;
+  }
+}

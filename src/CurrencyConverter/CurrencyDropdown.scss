@@ -1,12 +1,76 @@
-@import "../../theme/colors";
+@import "../theme/colors";
+
+$min-width: 80px;
+$max-width: 115px;
+$max-height: 150px;
 
 .CurrencyDropdown {
-  position: absolute;
-  top: 1.25rem;
-  right: 1rem;
   background-color: $white;
-  padding: 0.5rem 0.625rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 1.75rem;
-  min-width: 80px;
+  min-width: $min-width;
+  max-width: $max-width;
   color: $deep_blue;
+
+  &:hover & {
+    &__list {
+      opacity: 1;
+    }
+  }
+
+  &__active {
+    display: flex;
+    align-items: center;
+  }
+
+  &__flag {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  &__name {
+    color: $deep_blue;
+    font-size: 0.75rem;
+    padding: 0 0.6rem;
+  }
+
+  &__caret {
+    background-image: url(/assets/dropdown-icon.svg);
+    display: inline-block;
+    width: 8px;
+    height: 5px;
+  }
+
+  &__list {
+    opacity: 0;
+    position: absolute;
+    top: 2.5rem;
+    left: 0;
+    width: $min-width;
+    height: $max-height;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    overflow-y: scroll;
+    background-color: $white;
+    box-shadow: 0 5px 10px -5px $shallow_blue;
+  }
+
+  &__list & {
+    &__item {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &__item:hover & {
+    &__name {
+      text-decoration: underline;
+    }
+  }
 }
