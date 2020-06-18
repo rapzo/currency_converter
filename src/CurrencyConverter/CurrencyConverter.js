@@ -3,15 +3,19 @@ import PropTypes from 'prop-types';
 
 import './CurrencyConverter.scss';
 
-import { TextInput } from './TextInput';
+import { converter } from './CurrencyConverterService';
+import { CurrencyInput } from './CurrencyInput';
 import { CurrencyDropdown } from './CurrencyDropdown';
 
 
 export function CurrencyConverter() {
+
+  converter();
+
   return (
     <div className="CurrencyConverter">
-      <div className="CurrencyInput">
-        <TextInput />
+      <div className="InputControl">
+        <CurrencyInput />
         <CurrencyDropdown />
       </div>
     </div>

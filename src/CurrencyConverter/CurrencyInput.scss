@@ -1,6 +1,6 @@
-@import "../theme/colors";
+@import "../../theme/colors";
 
-.TextInput {
+.CurrencyInput {
   border: none;
   outline: none;
   border-radius: 5px;
@@ -9,4 +9,8 @@
   padding: 1.25rem 1.5rem;
   flex-grow: 1;
   color: $grey;
+
+  &::placeholder {
+    color: $grey;
+  }
 }

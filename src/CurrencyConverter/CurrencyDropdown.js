@@ -12,3 +12,11 @@ export function CurrencyDropdown() {
     </div>
   );
 }
+
+CurrencyDropdown.propTypes = {
+  currencies: PropTypes.arrayOf(
+    PropTypes.shape({
+
+    }),
+  ).isRequired
+}
