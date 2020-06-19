@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-const getSrc = filename => `../assets/${filename}`;
+const getSrc = filename => `/assets/${filename}`;
 const getSources = (name, ext = 'png') => [
   getSrc(`${name}.${ext}`),
   getSrc(`${name}@2x.${ext}`),
@@ -26,16 +26,22 @@ const defaultSrcSet = getSourceSets(
 export function CurrencyConverterFlag({currency, className}) {
   const [small, medium, large] = getSources(currency.toUpperCase());
   const srcSet = getSourceSets(small, medium, large);
+  const [state, setState] = React.useState({
+    src: small,
+    srcSet,
+  });
 
   const handleError = ({target}) => {
-    target.src = defaultSmallSrc;
-    target.srcSet = defaultSrcSet;
+    setState({
+      src: defaultSmallSrc,
+      srcSet: defaultSrcSet,
+    });
   };
 
   return (
     <img
-      src={small}
-      srcSet={srcSet}
+      src={state.src}
+      srcSet={state.srcSet}
       alt={currency}
       onError={handleError}
       className={className}

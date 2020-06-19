@@ -12,12 +12,6 @@ $max-height: 150px;
   max-width: $max-width;
   color: $deep_blue;
 
-  &:hover & {
-    &__list {
-      opacity: 1;
-    }
-  }
-
   &__active {
     display: flex;
     align-items: center;
@@ -53,6 +47,10 @@ $max-height: 150px;
     overflow-y: scroll;
     background-color: $white;
     box-shadow: 0 5px 10px -5px $shallow_blue;
+
+    &--open {
+      opacity: 1;
+    }
   }
 
   &__list & {
@@ -63,8 +61,6 @@ $max-height: 150px;
   }
 
   &__item {
-    display: flex;
-    align-items: center;
     cursor: pointer;
   }
 
