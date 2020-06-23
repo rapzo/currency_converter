@@ -1,6 +1,9 @@
 @import "../theme/colors";
 
 .CurrencyConverterResult {
+  display: flex;
+  flex-flow: column;
+  padding: 1.25rem 1.5rem;
 
   &__default {
     padding-top: 30px;

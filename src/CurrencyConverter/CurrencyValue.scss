@@ -1,0 +1,19 @@
+@import "../theme/colors";
+
+.CurrencyValue {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.25rem 0;
+
+  &__price {
+    color: $deep_blue;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  &__currency {
+    width: calc(115px - 1.5rem);
+    display: flex;
+    justify-content: flex-start;
+  }
+}

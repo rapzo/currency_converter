@@ -1,30 +1,28 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 import './CurrencyInput.scss';
 
-const {format} = new Intl.NumberFormat(
-  navigator.locale
-);
-
-export function CurrencyInput({setValue}) {
-  const initialValue = 0.00;
+export function CurrencyInput({initialValue, onInputChange}) {
   const inputRef = React.useRef();
   const input$ = new Subject().pipe(
-    debounceTime(1000),
+    debounceTime(500),
   );
 
   React.useEffect(() => {
-    const subscription = input$.subscribe(value => {
-      console.log(value)
-    });
+    const subscription = input$.subscribe(onInputChange);
 
     return () => subscription.unsubscribe();
-  }, [input$]);
+  }, [input$, onInputChange]);
 
   const handleChangeValue = ({target}) => {
-    input$.next(target.value);
+    const value = Number(target.value).toFixed(2);
+
+    if (!value) return;
+
+    input$.next(value);
   };
 
   return (
@@ -39,3 +37,15 @@ export function CurrencyInput({setValue}) {
     />
   );
 }
+
+CurrencyInput.propTypes = {
+  initialValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  onInputChange: PropTypes.func.isRequired,
+};
+
+CurrencyInput.defaultProps = {
+  initialValue: '0.00',
+};

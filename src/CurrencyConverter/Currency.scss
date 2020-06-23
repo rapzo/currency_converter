@@ -1,4 +1,23 @@
+@import "../theme/colors";
+
 .Currency {
   display: flex;
   align-items: center;
+
+  &__flag {
+    display: flex;
+    align-items: center;
+
+    & > img {
+      width: 1.625rem;
+      height: 1.625rem;
+    }
+  }
+
+  &__name {
+    color: $deep_blue;
+    font-size: 0.75rem;
+    padding: 0 0.6rem;
+    font-weight: bold;
+  }
 }

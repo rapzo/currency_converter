@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "@uphold/uphold-sdk-javascript": "^2.4.0",
     "classnames": "^2.2.6",
+    "micro": "^9.3.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
@@ -15,8 +16,9 @@
     "sass": "^1.26.8"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "api": "env $(cat .env) yarn run micro -l tcp://0.0.0.0:1337 api/src/index.js",
     "build": "react-scripts build",
+    "start": "concurrently --kill-others \"react-scripts start\" \"yarn run api\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -36,6 +38,8 @@
     ]
   },
   "devDependencies": {
+    "concurrently": "^5.2.0",
     "cypress": "^4.8.0"
-  }
+  },
+  "proxy": "http://0.0.0.0:1337"
 }

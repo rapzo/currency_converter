@@ -1,31 +1,21 @@
 @import "../theme/colors";
 
 $min-width: 80px;
-$max-width: 115px;
+$max-width: calc(115px - (2 * 0.875rem));
 $max-height: 150px;
 
 .CurrencyDropdown {
   background-color: $white;
-  padding: 0.5rem 0.75rem;
+  padding: 0.5rem 0.875rem;
   border-radius: 1.75rem;
-  min-width: $min-width;
+  width: $max-width;
   max-width: $max-width;
   color: $deep_blue;
 
   &__active {
     display: flex;
     align-items: center;
-  }
-
-  &__flag {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-
-  &__name {
-    color: $deep_blue;
-    font-size: 0.75rem;
-    padding: 0 0.6rem;
+    justify-content: space-between;
   }
 
   &__caret {
@@ -36,20 +26,20 @@ $max-height: 150px;
   }
 
   &__list {
-    opacity: 0;
+    display: none;
     position: absolute;
     top: 2.5rem;
     left: 0;
-    width: $min-width;
+    width: $max-width;
     height: $max-height;
     border-radius: 0.5rem;
-    padding: 0.5rem 0.75rem;
+    padding: 0.5rem 0.875rem;
     overflow-y: scroll;
     background-color: $white;
     box-shadow: 0 5px 10px -5px $shallow_blue;
 
     &--open {
-      opacity: 1;
+      display: block;
     }
   }
 
