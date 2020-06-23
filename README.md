@@ -1,68 +1,76 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Currency Converter
 
-## Available Scripts
+It's a little React app that manages currency convertion rates based on Uphold's API.
 
-In the project directory, you can run:
+## Setup
 
-### `yarn start`
+The `.env.example` file should be copied into `.env` in order to work, although, it falls back
+to default values and, since it is using the sandbox mode, it should work despite of its existance.
+Nevertheless, to a more controlled execution, `CLIENT_ID` and `CLIENT_SECRET`, should be replaced with
+proper values generated from the target Uphold application.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Server Side
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+It's a simple micro service which proxies the request to the api while preserving
+any secret information provided as environment variables.
+In order to run independently, the command given is aliased in `package.json` as:
 
-### `yarn test`
+```bash
+yarn run api
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+And its original form:
 
-### `yarn build`
+```bash
+env $(cat .env) yarn run micro -l tcp://0.0.0.0:1337 api/src/index.js
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Replacing the `0.0.0.0` and `1337` changes the hostname and port respectedly where the server runs.
+No CORS are supported by design.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Client Side
 
-### `yarn eject`
+In order to test the application, the following command:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+yarn start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Will launch both the client side app and the server side api in parallel processes.
+The api requests are proxied from the default server port `1337` to the default app port `3000`.
+If the server port is changed, the last value in `package.json` keyed by `proxy` should be changed as well.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The default browser should launch as soon as the application is build.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Architecture
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Styling
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+All styles were written with the SASS pre-processor in order to have separation of concerns in terms of
+what is common and what is particular, what is from the theme and what is from a given component.
+BEM patterns are applied shallowly at the component level.
 
-### Code Splitting
+### Type safety
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+All code was written in JavaScript and the only type check validation is done via PropTypes.
 
-### Analyzing the Bundle Size
+### State management
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+State management is done in a two-fold, which may look redundant, but the objective was to mix in both
+strategies in order to showcase its potential and synergies.
+The entrypoint component `CurrencyConverter` is some sort of controller, or container component` since it
+packs all the wiring and state manipulation across the whole app.
+The service `CurrencyConverterService` exports a singleton-ish instance of the given service class and,
+with help of `RxJS` deals with loading, caching, selecting, and calculating conversions, while keeping
+internal state streams of the latest inputs and/or transformations.
 
-### Making a Progressive Web App
+### Components
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+All components should be pluggable anywhere since their dependency footprint is very small: other than the theme,
+only the necessary props should be needed.
 
-### Advanced Configuration
+### Testing
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+WIP
